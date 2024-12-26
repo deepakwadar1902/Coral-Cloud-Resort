@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Flow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <actionCalls>
+        <description>Generates a collage based on a given quote and a list of images.</description>
+        <name>Generate_a_Collage</name>
+        <label>Generate a Collage</label>
+        <locationX>176</locationX>
+        <locationY>134</locationY>
+        <actionName>CollageAPI.generate</actionName>
+        <actionType>externalService</actionType>
+        <connector>
+            <targetReference>Handle_Response</targetReference>
+        </connector>
+        <flowTransactionModel>CurrentTransaction</flowTransactionModel>
+        <inputParameters>
+            <name>quote</name>
+            <value>
+                <elementReference>quote</elementReference>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>experienceImageURLs</name>
+            <value>
+                <elementReference>experienceImageURLs</elementReference>
+            </value>
+        </inputParameters>
+        <nameSegment>CollageAPI.generate</nameSegment>
+        <offset>0</offset>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+        <versionSegment>1</versionSegment>
+    </actionCalls>
+    <apiVersion>62.0</apiVersion>
+    <assignments>
+        <description>Storing the output of the collage API call.</description>
+        <name>Handle_Response</name>
+        <label>Handle Response</label>
+        <locationX>176</locationX>
+        <locationY>242</locationY>
+        <assignmentItems>
+            <assignToReference>downloadURL</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>Generate_a_Collage.200</elementReference>
+            </value>
+        </assignmentItems>
+    </assignments>
+    <description>This action generates a collage based the experiences they have booked. You must use the QueryRecords action to fetch the contact and ask the user for a quote before executing the action. Then you must use QueryRecords action to fetch Bookings for the contact before executing the action.</description>
+    <environments>Default</environments>
+    <interviewLabel>Generate Collage {!$Flow.CurrentDateTime}</interviewLabel>
+    <label>Generate Collage</label>
+    <processMetadataValues>
+        <name>BuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>CanvasMode</name>
+        <value>
+            <stringValue>AUTO_LAYOUT_CANVAS</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>OriginBuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processType>AutoLaunchedFlow</processType>
+    <start>
+        <locationX>50</locationX>
+        <locationY>0</locationY>
+        <connector>
+            <targetReference>Generate_a_Collage</targetReference>
+        </connector>
+    </start>
+    <status>Active</status>
+    <variables>
+        <description>A URL for the user to download the collage image.</description>
+        <name>downloadURL</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>true</isOutput>
+    </variables>
+    <variables>
+        <description>A comma delimited list of image URLs representing the resort experiences</description>
+        <name>experienceImageURLs</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>true</isInput>
+        <isOutput>false</isOutput>
+    </variables>
+    <variables>
+        <description>A personalized message to display on the collage relating to what the user most enjoyed about their stay at the resort.</description>
+        <name>quote</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>true</isInput>
+        <isOutput>false</isOutput>
+    </variables>
+</Flow>

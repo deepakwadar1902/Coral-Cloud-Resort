@@ -169,6 +169,7 @@
         <searchResultsAdditionalFields>End_Time__c</searchResultsAdditionalFields>
         <searchResultsAdditionalFields>Total_Price__c</searchResultsAdditionalFields>
         <searchResultsAdditionalFields>Status__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>Experience_Picture__c</searchResultsAdditionalFields>
     </searchLayouts>
     <sharingModel>ControlledByParent</sharingModel>
     <visibility>Public</visibility>
